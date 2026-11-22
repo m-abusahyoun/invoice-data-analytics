@@ -1,0 +1,5 @@
+model,selected_features,MAE,MSE,RMSE,R2
+Tree_Forward,"collection_type,invoice_tax_amount,days_overdue",296.36696187947285,181334.21800918283,425.83355669695976,0.9785366544947774
+Linear_Forward,"collection_type,invoice_tax_amount,days_overdue",488.74615440771123,382577.8592253823,618.5287860927592,0.9547167607671987
+Tree_KBest,"invoice_discount_amount,invoice_tax_amount,days_overdue",430.88720970587093,406865.2846554687,637.8599255757244,0.9518420170527394
+Linear_KBest,"invoice_discount_amount,invoice_tax_amount,days_overdue",780.1886112606463,1067987.843629956,1033.4349731018183,0.8735892633234476

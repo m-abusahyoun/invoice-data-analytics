@@ -1,22 +1,43 @@
 # Invoice Data Analytics
 **Mahmoud Abusahyoun | Data Analytics final project, HTU**
 
-Three related notebooks demonstrate descriptive, predictive and prescriptive analytics for an invoice-processing scenario.
+Three related notebooks cover descriptive, predictive and prescriptive analytics. All three are executed with saved outputs; no local rerun is needed to review the results.
 
-| Notebook | Content | Reproducibility |
-|---|---|---|
-| `descriptive.ipynb` | Frequency, central tendency, dispersion and charts | Archived original outputs; source workbook missing |
-| `predictive.ipynb` | Moving averages, smoothing, regression, feature selection, RNN/LSTM | Archived original outputs; source workbook missing |
-| `prescriptive.ipynb` | Branch allocation with SciPy linear programming and PyGAD | Corrected and rerun; self-contained |
+| Notebook | Contents |
+|---|---|
+| `descriptive.ipynb` | Full-dataset statistics, distributions and comparisons |
+| `predictive.ipynb` | Daily smoothing, feature selection, linear/tree regression, RNN and LSTM |
+| `prescriptive.ipynb` | Linear programming and a genetic algorithm for branch allocation |
 
-## Missing source data
-The first two notebooks require `invoices - updated.xlsx`, which was absent from the supplied files and was not recovered by a filename search. Their saved outputs contain summaries, not a complete recoverable workbook. No replacement or fabricated invoice dataset has been used. These two notebooks preserve original code and outputs with a prominent archive notice and have not been rerun or validated.
+## Data included
+The supplied `invoices - updated.xlsx` contains **532,057 rows and 12 columns**. The author identified it as public/synthetic Kaggle data and authorized publication. The exact Kaggle listing and license were not supplied and are not invented here.
 
-The predictive notebook includes exploratory limitations: encoding before splitting, repeated method comparisons on a shared test set, and ANN validation preprocessing fitted to a larger training set. Feature availability at prediction time and time ordering also require review against the workbook. Its original metrics should not be represented as corrected or production-ready.
+- `data/invoices_model_data.csv.gz` retains **every row** and the eight columns required by the notebooks. Four identifying columns are excluded from this analytical view.
+- `data/workbook_parts/` preserves every byte of the complete original workbook, including all twelve columns. It is split only because the original workbook exceeds the browser's single-file upload limit.
+- Run `python restore_workbook.py` from this folder to reconstruct `invoices - updated.xlsx`. The script verifies each part and the complete workbook with SHA-256 before saving it. Python's standard library is sufficient.
+- The notebooks read the compressed analytical CSV directly; restoration of the Excel workbook is optional for running the analysis. No external download is required.
 
-## Prescriptive model
-Allocate a workload of 5,000 **processing operations including rework** across Amman, Irbid and Aqaba, minimizing assumed costs while respecting capacities and an accuracy-related allocation constraint. This preserves the original equality `A + I + 1.10Q = 5000`. If the business requirement is 5,000 distinct invoices, the equality must instead be reformulated; this notebook makes no claim to solve that different scenario.
+## Run
+Use Python 3.12, install `requirements.txt`, and open the notebooks with this repository as the working directory. TensorFlow runs on CPU. `artifacts/` includes the selected regressor, trained RNN/LSTM and fitted sequence preprocessing. `results/` includes statistics, validation comparisons, held-out metrics, training histories, split details and the execution log.
 
-The linear program obtains a minimum cost of **2,340.00 JOD**. The seeded genetic algorithm obtains **2,340.90 JOD**, a **0.90 JOD** optimality gap. Assumptions are specified directly in code; the missing workbook is not needed for this notebook. Upper-bound sampling was corrected so PyGAD can reach the allowed capacities.
+## Rerun results
+| Model | Evaluation partition | MAE | RMSE | R² |
+|---|---|---:|---:|---:|
+| Tree_Forward | random_test | 295.04 | 414.91 | 0.9794 |
+| Training_mean | random_test | 1068.14 | 2893.71 | -0.0000 |
+| RNN | chronological_test | 1076.17 | 3098.07 | -0.0008 |
+| LSTM | chronological_test | 1083.47 | 3097.16 | -0.0002 |
+| Fitting_mean | chronological_test | 1084.32 | 3097.14 | -0.0002 |
 
-Use Python 3.12, install `requirements.txt`, then open `prescriptive.ipynb` from this folder. Results and an execution log are included in `results/`. The original descriptive/predictive notebooks require the workbook in the working directory before they can be run; their code is retained unchanged.
+Random and chronological test partitions differ, so those model families should not be ranked directly against one another. Linear/tree experiments select features using fitting data and choose a method on validation data before final testing. The neural experiments use 70%/10%/20% chronological row boundaries and ten preceding invoice feature rows; the fitting partition alone determines encoders and feature/target scaling. They use at most 30 epochs with validation early stopping. Weak sequence results are retained and compared with a mean baseline.
+
+## Interpretation and limits
+`days_overdue` may only be available after issuance, so the regression is retrospective unless the operational timing of features is established. Ordered invoice records belong to different invoices; the sequence experiments do not establish customer-level or entity-level forecasting ability. Smoothing curves are descriptive, not held-out forecasts. The currency is not established by the workbook. Historical coursework previously inspected test outputs, so these reruns are not independent external validation.
+
+The descriptive plots now match pie labels to their count order, describe right skew correctly, and aggregate category bars. Only a seeded scatter-plot display sample is used; statistical summaries and model partitions retain all rows. The original neural target-indexing problem is corrected.
+
+## Prescriptive assumptions
+The allocation model retains the original equality `A + I + 1.10Q = 5000`: it allocates **5,000 processing operations including rework**, not 5,000 distinct invoices. Its costs and capacities are stipulated assumptions, not estimates learned from the invoice workbook. The exact LP minimum is 2,340.00 JOD; the seeded genetic algorithm's recorded result and gap are in `results/prescriptive_results.json`.
+
+## Original coursework
+The three exact original notebooks are preserved in the separate complete project backup. They retain their original code and outputs; the current repository contains the corrected rerun edition.

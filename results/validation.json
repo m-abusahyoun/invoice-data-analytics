@@ -1,0 +1,42 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "notebook": "descriptive.ipynb",
+      "code_cells": 23,
+      "status": "all_cells_executed_without_errors"
+    },
+    {
+      "notebook": "prescriptive.ipynb",
+      "code_cells": 4,
+      "status": "all_cells_executed_without_errors"
+    },
+    {
+      "notebook": "predictive.ipynb",
+      "code_cells": 7,
+      "status": "all_cells_executed_without_errors"
+    },
+    {
+      "check": "complete_original_workbook_reconstructs_byte_for_byte",
+      "size_bytes": 39580663,
+      "sha256": "6719a8bd1725c949812713ddbb8ea51ce756508a8e35342216e3fd869e03974f",
+      "status": "passed"
+    },
+    {
+      "check": "reloaded_regression_model_matches_all_saved_test_predictions",
+      "rows": 106412,
+      "status": "passed"
+    },
+    {
+      "check": "reloaded_rnn_matches_complete_test_metrics",
+      "rows": 106412,
+      "status": "passed"
+    },
+    {
+      "check": "reloaded_lstm_matches_complete_test_metrics",
+      "rows": 106412,
+      "status": "passed"
+    }
+  ],
+  "execution_method": "Sequential IPython execution, fresh notebook namespaces, actual captured outputs; Jupyter kernel startup is unavailable in this execution environment."
+}

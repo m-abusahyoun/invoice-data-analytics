@@ -1,8 +1,20 @@
 [
   {
+    "notebook": "descriptive.ipynb",
+    "status": "executed",
+    "seconds": 4.71,
+    "code_cells": 23
+  },
+  {
+    "notebook": "predictive.ipynb",
+    "status": "executed",
+    "seconds": 198.36,
+    "code_cells": 7
+  },
+  {
     "notebook": "prescriptive.ipynb",
     "status": "executed",
-    "seconds": 1.2,
-    "execution": "Sequential IPython cells; fresh namespace per notebook; figures captured; joblib threading backend"
+    "seconds": 0.42,
+    "code_cells": 4
   }
 ]

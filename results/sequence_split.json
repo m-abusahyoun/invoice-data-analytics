@@ -1,0 +1,11 @@
+{
+  "rows": 532057,
+  "fitting_row_end": 372439,
+  "validation_row_end": 425645,
+  "timesteps": 10,
+  "sequence_counts": [
+    372429,
+    53206,
+    106412
+  ]
+}

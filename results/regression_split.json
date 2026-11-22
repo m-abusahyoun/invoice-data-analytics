@@ -1,0 +1,8 @@
+{
+  "seed": 42,
+  "rows": 532057,
+  "train": 319233,
+  "validation": 106412,
+  "test": 106412,
+  "selected_model": "Tree_Forward"
+}
