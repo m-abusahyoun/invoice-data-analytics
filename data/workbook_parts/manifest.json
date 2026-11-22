@@ -1,0 +1,17 @@
+{
+  "file_name": "invoices - updated.xlsx",
+  "size_bytes": 39580663,
+  "sha256": "6719a8bd1725c949812713ddbb8ea51ce756508a8e35342216e3fd869e03974f",
+  "parts": [
+    {
+      "name": "invoices_updated.xlsx.part001",
+      "size_bytes": 20000000,
+      "sha256": "c3dbf8c3afc5afdc8e5485b250400285104767e5d9d5ede1bb4e70d796fc91e3"
+    },
+    {
+      "name": "invoices_updated.xlsx.part002",
+      "size_bytes": 19580663,
+      "sha256": "8a485b084a2213f71bf2f2f6e0e550bcef95eafde901e369a57cbebaf1e77107"
+    }
+  ]
+}
