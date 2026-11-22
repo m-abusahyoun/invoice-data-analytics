@@ -1,0 +1,11 @@
+{
+  "lp_minimum_cost_jod": 2340.0,
+  "ga_cost_jod": 2340.9,
+  "ga_gap_jod": 0.900000000000091,
+  "ga_allocation": {
+    "Amman": 3,
+    "Irbid": 2797,
+    "Aqaba": 2000
+  },
+  "workload_includes_rework": true
+}
